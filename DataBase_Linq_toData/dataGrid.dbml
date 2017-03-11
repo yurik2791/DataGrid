@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StepAirways" Class="dataGridDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=S319P\SQLEXPRESS;Initial Catalog=StepAirways;Persist Security Info=True;User ID=Iurie" SettingsObjectName="DataBase_Linq_toData.Properties.Settings" SettingsPropertyName="StepAirwaysConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Ticket" Member="Tickets">
+    <Type Name="Ticket">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SecondName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Src" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Dst" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Class" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Way" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Date1" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Date2" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="City_Ticket" Member="City" ThisKey="Src" OtherKey="Id" Type="City" IsForeignKey="true" />
+      <Association Name="City_Ticket1" Member="City1" ThisKey="Dst" OtherKey="Id" Type="City" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.City" Member="Cities">
+    <Type Name="City">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="City_Ticket" Member="Tickets" ThisKey="Id" OtherKey="Src" Type="Ticket" />
+      <Association Name="City_Ticket1" Member="Tickets1" ThisKey="Id" OtherKey="Dst" Type="Ticket" />
+    </Type>
+  </Table>
+</Database>
